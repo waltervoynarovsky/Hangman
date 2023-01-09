@@ -26,35 +26,37 @@ public class Main {
         StringBuilder result = new StringBuilder(replaced);
 
 
+        System.out.println(lives);
         while (result.toString().contains("_")) {
             if (lives > 0) {
-                System.out.println("Your move");
+                System.out.println("Type in character");
                 char guess = commands.getCharacter();
-                System.out.println(guess);
-                if (word.contains(Character.toString(guess))) {
-                    for (int i = 0; i < word.length(); i++) {
-                        if (word.charAt(i) == guess) {
-                            result.setCharAt(i, guess);
+                if (Character.toString((guess)).isEmpty()) {
+                    System.out.println("Type in character");
+                } else {
+                    if (word.contains(Character.toString(guess))) {
+                        for (int i = 0; i < word.length(); i++) {
+                            if (word.charAt(i) == guess) {
+                                result.setCharAt(i, guess);
+                            }
                         }
-                        else {
-                            lives--;
+                        System.out.println(result);
+
+                    } else {
+                        System.out.println("There is no letter '" + guess + "' in this word.");
+                        lives--;
+                        System.out.println("Chances left: " + lives);
+                        System.out.println(result);
+                        if (lives < 1) {
+                            System.out.println("Game Over");
+                            break;
                         }
                     }
-                            System.out.println(result);
-                } else {
-                    lives--;
-                    System.out.println("Game Over");
-                    break;
                 }
             }
         }
-    }}
-
-//                            int number = word.charAt(i);
-//                            result = result.substring(0, number) + guess + result.substring(number + 1); // D _ _ | D _ Ga
-//                         result = result.replace(character, guess);
-//                        }
-//                            System.out.println(result);
-//                            System.out.println(word.indexOf(guess));
-
-//                         UPDATING THE RESULT STRING AT THE INDEX OF THE GUESS
+        if (!result.toString().contains("_") && lives > 0) {
+            System.out.println("Congratulations, you've won with " + lives + " lives left!");
+        }
+    }
+}
