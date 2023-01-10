@@ -43,7 +43,13 @@ public class Wordlist {
 
     public static String generateWord() {
 
-        String challenge = words.get(random.nextInt(words.size()));
-        return challenge.toLowerCase();
+        String generatedWord = words.get(random.nextInt(words.size()));
+        return generatedWord.toLowerCase();
+    }
+    static String word = generateWord();
+
+
+    public String replaceLetters(){
+        return word.replaceAll(".", "_");
     }
 }
